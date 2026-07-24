@@ -17,7 +17,7 @@ import {
   Globe,
   Sparkles,
 } from "lucide-react"
-import PreviewModal from "../global/preview-modal"
+import { PreviewModal } from "@/components/preview-modal"
 
 interface FileData {
   name: string
@@ -307,7 +307,7 @@ const ProductionResultPreview: React.FC<ProductionResultPreviewProps> = ({
       {hasilProdukFile && (
         <PreviewModal
           isOpen={isFilePreviewOpen}
-          onClose={() => setIsFilePreviewOpen(false)}
+          onOpenChange={(open) => { if (!open) setIsFilePreviewOpen(false) }}
           url={getPreviewUrl(hasilProdukFile) || ""}
           type={getPreviewType(hasilProdukFile)}
           fileName={getFileName(hasilProdukFile)}
@@ -317,7 +317,7 @@ const ProductionResultPreview: React.FC<ProductionResultPreviewProps> = ({
       {hasilProdukLink && (
         <PreviewModal
           isOpen={isLinkPreviewOpen}
-          onClose={() => setIsLinkPreviewOpen(false)}
+          onOpenChange={(open) => { if (!open) setIsLinkPreviewOpen(false) }}
           url={hasilProdukLink}
           type={hasilProdukLink.split(".").pop()?.toLowerCase() === "pdf" ? "application/pdf" : "text/html"}
           fileName={hasilProdukLink.split("/").pop() || "link"}

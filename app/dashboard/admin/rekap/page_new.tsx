@@ -243,29 +243,100 @@ export default function RekapPage() {
       try {
         const savedSubmissions = localStorage.getItem("rekap_cache")
         
-        if (savedSubmissions) {
-          const parsedSubmissions: Submission[] = JSON.parse(savedSubmissions)
-          // Filter for completed submissions only from cache
-          const completedSubmissions = parsedSubmissions.filter(sub => 
-            sub.workflowStage === "completed"
-          )
+          if (savedSubmissions && savedSubmissions !== "[]") {
+            const parsedSubmissions: Submission[] = JSON.parse(savedSubmissions)
+            // Filter for completed submissions only from cache
+            const completedSubmissions = parsedSubmissions.filter(sub => 
+              sub.workflowStage === "completed"
+            )
+            
+            if (completedSubmissions.length > 0) {
+              setSubmissions(completedSubmissions)
+              setFilteredSubmissions(completedSubmissions)
+              showToast("Data dimuat dari cache (offline)", "info")
+              return
+            }
+          }
           
-          setSubmissions(completedSubmissions)
-          setFilteredSubmissions(completedSubmissions)
-          showToast("Data dimuat dari cache (offline)", "info")
-        } else {
-          // No cache available
+          // No cache available or empty, use dummy data
+          const dummyData: Submission[] = [
+            {
+              id: 991,
+              noComtab: "COM-991",
+              pin: "1234",
+              judul: "Sosialisasi Program Kesehatan Masyarakat",
+              jenisMedia: "Digital",
+              tanggalOrder: new Date("2025-05-10"),
+              petugasPelaksana: "Admin User",
+              supervisor: "Super Admin",
+              durasi: "14 Hari",
+              jumlahProduksi: "2 konten",
+              tanggalSubmit: new Date("2025-05-12"),
+              workflowStage: "completed",
+              isOutputValidated: true,
+              contentItems: [
+                {
+                  id: "1",
+                  nama: "Video Sosialisasi",
+                  jenisKonten: "video",
+                  status: "approved",
+                  isTayang: true,
+                  hasilProdukLink: "https://youtube.com/watch?v=123",
+                  mediaPemerintah: ["Website"],
+                  mediaMassa: [],
+                  nomorSurat: "SURAT-001",
+                  narasiText: "Video sosialisasi tentang program kesehatan masyarakat di kota kita.",
+                  tanggalOrderMasuk: new Date("2025-05-10"),
+                  tanggalJadi: new Date("2025-05-14"),
+                  tanggalTayang: new Date("2025-05-15"),
+                  keterangan: "Selesai tepat waktu"
+                }
+              ]
+            },
+            {
+              id: 992,
+              noComtab: "COM-992",
+              pin: "5678",
+              judul: "Kampanye Anti Narkoba 2025",
+              jenisMedia: "Cetak",
+              tanggalOrder: new Date("2025-06-01"),
+              petugasPelaksana: "Admin User",
+              supervisor: "Super Admin",
+              durasi: "7 Hari",
+              jumlahProduksi: "1 konten",
+              tanggalSubmit: new Date("2025-06-03"),
+              workflowStage: "completed",
+              isOutputValidated: true,
+              contentItems: [
+                {
+                  id: "2",
+                  nama: "Poster Kampanye",
+                  jenisKonten: "gambar",
+                  status: "approved",
+                  isTayang: true,
+                  hasilProdukLink: "https://example.com/poster.jpg",
+                  mediaPemerintah: ["Instagram"],
+                  mediaMassa: [],
+                  nomorSurat: "SURAT-002",
+                  narasiText: "Desain poster kampanye anti narkoba untuk generasi muda.",
+                  tanggalOrderMasuk: new Date("2025-06-01"),
+                  tanggalJadi: new Date("2025-06-05"),
+                  tanggalTayang: new Date("2025-06-06"),
+                  keterangan: "Desain sudah disetujui"
+                }
+              ]
+            }
+          ]
+          setSubmissions(dummyData)
+          setFilteredSubmissions(dummyData)
+          showToast("Menampilkan data dummy untuk demonstrasi", "info")
+          
+        } catch (cacheError) {
+          console.error("❌ Failed to load from cache:", cacheError)
           setSubmissions([])
           setFilteredSubmissions([])
-          showToast("Tidak ada data rekap yang tersedia", "info")
+          showToast("Gagal memuat data submissions", "error")
         }
-        
-      } catch (cacheError) {
-        console.error("❌ Failed to load from cache:", cacheError)
-        setSubmissions([])
-        setFilteredSubmissions([])
-        showToast("Gagal memuat data submissions", "error")
-      }
     } finally {
       setIsLoading(false)
     }
@@ -889,15 +960,19 @@ export default function RekapPage() {
         <MobileRekapDetailDialog
           submission={selectedSubmission}
           isOpen={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
-          formatDate={formatDate}
+          onOpenChange={(open) => {
+            setIsDialogOpen(open)
+            if (!open) setSelectedSubmission(null)
+          }}
         />
       ) : (
         <RekapDetailDialog
           submission={selectedSubmission}
           isOpen={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
-          formatDate={formatDate}
+          onOpenChange={(open) => {
+            setIsDialogOpen(open)
+            if (!open) setSelectedSubmission(null)
+          }}
         />
       )}
     </div>

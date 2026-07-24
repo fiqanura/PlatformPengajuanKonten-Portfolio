@@ -187,7 +187,7 @@ export default function ValidasiOutputPage() {
         if (response.success && response.data) {
           console.log("✅ Validations loaded from server", response.data)
           
-          const validationItems = response.data.data || response.data
+          const validationItems = Array.isArray(response.data) ? response.data : (response.data as any).data || response.data
           console.log("📋 Validation items extracted:", validationItems)
           
           // Transform API data to match frontend interface
@@ -335,7 +335,7 @@ export default function ValidasiOutputPage() {
       const response = await getValidations()
       
       if (response.success && response.data) {
-        const validationItems = response.data.data || response.data
+        const validationItems = Array.isArray(response.data) ? response.data : (response.data as any).data || response.data
         // Reuse transformation logic...
         setSubmissions(validationItems)
         setFilteredSubmissions(validationItems)

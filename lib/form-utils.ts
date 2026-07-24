@@ -1,4 +1,4 @@
-import type { FileData as PersistedFileData } from "@/lib/utils"
+
 import type { FormContentItem } from "@/app/form-types"
 
 // Define a FileData interface for form state (can include base64 for temporary preview)
@@ -29,15 +29,7 @@ export const createFileDataForPreview = async (file: File): Promise<FileDataForF
   }
 }
 
-// Function to create PersistedFileData object from a File (metadata only)
-export const createPersistedFileData = (file: File): PersistedFileData => {
-  return {
-    name: file.name,
-    size: file.size,
-    type: file.type,
-    lastModified: file.lastModified,
-  }
-}
+
 
 // Helper function to generate content title with number
 export const generateContentTitle = (jenisKonten: string, existingItems: FormContentItem[]) => {

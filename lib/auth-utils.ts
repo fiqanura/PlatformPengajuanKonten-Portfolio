@@ -1,4 +1,4 @@
-import type { User } from "@/hooks/use-auth"
+import type { User } from "@/lib/api-client"
 
 export interface SessionData {
   user: User
@@ -13,7 +13,7 @@ export const validateSession = (sessionData: SessionData | null): boolean => {
 
   // Session duration based on role
   const maxAge =
-    user.role === "admin" || user.role === "super_admin"
+    user.role === "admin" || user.role === "superadmin"
       ? 24 * 60 * 60 * 1000 // 24 hours for admin
       : 8 * 60 * 60 * 1000 // 8 hours for user
 

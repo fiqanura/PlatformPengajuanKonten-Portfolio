@@ -823,7 +823,7 @@ export default function ReviewPage() {
               isOpen={isDialogOpen}
               onOpenChange={handleDialogOpenChange}
               submission={selectedSubmission}
-              onUpdate={handleUpdate}
+              onUpdate={handleUpdate as any}
               onToast={(message, type) => toast({ title: message, variant: type === "error" ? "destructive" : "default" })}
             />
           ) : (
@@ -831,7 +831,7 @@ export default function ReviewPage() {
               isOpen={isDialogOpen}
               onOpenChange={handleDialogOpenChange}
               submission={selectedSubmission}
-              onUpdate={handleUpdate}
+              onUpdate={handleUpdate as any}
               onToast={(message, type) => toast({ title: message, variant: type === "error" ? "destructive" : "default" })}
             />
           )}

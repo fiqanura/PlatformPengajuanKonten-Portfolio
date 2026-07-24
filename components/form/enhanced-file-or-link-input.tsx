@@ -12,9 +12,10 @@ import { FileDataForForm, FileValue } from "@/app/form-types"
 interface EnhancedFileOrLinkInputProps {
   id: string
   label: string
-  value?: FileValue
-  onChange: (newValue: FileValue) => void
+  value?: any
+  onChange: (newValue: any) => void
   accept?: string
+  placeholder?: string
   sourceTypes?: string[]
   onSourceToggle?: () => void
   className?: string

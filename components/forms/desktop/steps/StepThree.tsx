@@ -25,7 +25,7 @@ import {
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import FileOrLinkInput from "@/components/form/file-or-link-input"
-import type { FormData, FormContentItem } from "@/hooks/useFormHandler"
+import type { FormData, FormContentItem } from "@/app/form-types"
 
 interface StepThreeProps {
   formData: FormData

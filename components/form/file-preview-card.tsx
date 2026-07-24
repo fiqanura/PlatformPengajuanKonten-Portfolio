@@ -85,7 +85,7 @@ const FilePreviewCard: React.FC<FilePreviewCardProps> = ({ fileData, label, clas
 
         <PreviewModal
           isOpen={isPreviewOpen}
-          onClose={() => setIsPreviewOpen(false)}
+          onOpenChange={(open) => { if (!open) setIsPreviewOpen(false) }}
           url={fileData}
           type={fileData.split(".").pop()?.toLowerCase() === "pdf" ? "application/pdf" : "text/plain"}
           fileName={fileData.split("/").pop() || "file"}
@@ -227,7 +227,7 @@ const FilePreviewCard: React.FC<FilePreviewCardProps> = ({ fileData, label, clas
 
       <PreviewModal
         isOpen={isPreviewOpen}
-        onClose={() => setIsPreviewOpen(false)}
+        onOpenChange={(open) => { if (!open) setIsPreviewOpen(false) }}
         url={getPreviewUrl() || ""}
         type={fileData.type}
         fileName={fileData.name}

@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { FilePreviewCard } from "@/components/form/file-preview-card"
-import { FileDisplayCard } from "@/components/form/file-display-card"
+import FilePreviewCard from "@/components/form/file-preview-card"
+import FileDisplayCard from "@/components/form/file-display-card"
 import { Separator } from "@/components/ui/separator"
 import { formatDate } from "@/lib/utils"
 import { Check, FileText, Calendar, User, Clock, AlertCircle, CheckCircle, XCircle } from "lucide-react"
@@ -164,35 +164,35 @@ export function ContentViewDialog({ isOpen, onClose, submission }: ContentViewDi
                     {item.narasiFile && (
                       <div>
                         <p className="text-sm font-medium text-gray-700">File Narasi</p>
-                        <FileDisplayCard fileUrl={item.narasiFile} fileName="Narasi" />
+                        <FilePreviewCard fileData={item.narasiFile} label="Narasi" />
                       </div>
                     )}
 
                     {item.audioDubbing && (
                       <div>
                         <p className="text-sm font-medium text-gray-700">Audio Dubbing</p>
-                        <FileDisplayCard fileUrl={item.audioDubbing} fileName="Audio Dubbing" />
+                        <FilePreviewCard fileData={item.audioDubbing} label="Audio Dubbing" />
                       </div>
                     )}
 
                     {item.audioBacksound && (
                       <div>
                         <p className="text-sm font-medium text-gray-700">Audio Backsound</p>
-                        <FileDisplayCard fileUrl={item.audioBacksound} fileName="Audio Backsound" />
+                        <FilePreviewCard fileData={item.audioBacksound} label="Audio Backsound" />
                       </div>
                     )}
 
                     {item.pendukungLainnya && (
                       <div>
                         <p className="text-sm font-medium text-gray-700">File Pendukung</p>
-                        <FileDisplayCard fileUrl={item.pendukungLainnya} fileName="File Pendukung" />
+                        <FilePreviewCard fileData={item.pendukungLainnya} label="File Pendukung" />
                       </div>
                     )}
 
                     {item.hasilProduksi && (
                       <div>
                         <p className="text-sm font-medium text-gray-700">Hasil Produksi</p>
-                        <FilePreviewCard fileUrl={item.hasilProduksi} fileName="Hasil Produksi" />
+                        <FilePreviewCard fileData={item.hasilProduksi} label="Hasil Produksi" />
                       </div>
                     )}
 

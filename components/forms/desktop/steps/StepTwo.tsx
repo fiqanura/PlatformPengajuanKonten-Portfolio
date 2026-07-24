@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Video, ImageIcon, FileText, Mic, Radio, Camera, Plus, Minus, CheckCircle, AlertCircle } from "lucide-react"
-import type { FormData } from "@/hooks/useFormHandler"
+import type { FormData } from "@/app/form-types"
 
 interface StepTwoProps {
   formData: FormData
@@ -300,7 +300,7 @@ export default function StepTwo({ formData, updateFormData }: StepTwoProps) {
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Jenis Konten Dipilih:</h4>
                   <div className="space-y-2">
-                    {selectedContentTypes.map((typeId) => {
+                    {selectedContentTypes.map((typeId: any) => {
                       const option = contentTypeOptions.find((opt) => opt.id === typeId)
                       const quantity = contentQuantities[typeId] || 0
                       return (

@@ -9,8 +9,8 @@ import { Upload, Link, X, FileText, Eye, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface FileOrLinkInputProps {
-  value: File | string | null
-  onChange: (value: File | string | null) => void
+  value: any
+  onChange: (value: any) => void
   currentType?: "file" | "link"
   accept?: string
   placeholder?: string

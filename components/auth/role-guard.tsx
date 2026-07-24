@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 interface RoleGuardProps {
   children: React.ReactNode
-  allowedRoles: string[]
+  allowedRoles: any
   fallbackPath?: string
   showUnauthorized?: boolean
 }

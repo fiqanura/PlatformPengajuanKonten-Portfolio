@@ -11,7 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 interface AuthGuardProps {
   children: React.ReactNode
   requireAuth?: boolean
-  requiredRole?: string | string[]
+  requiredRole?: any
   fallbackPath?: string
 }
 

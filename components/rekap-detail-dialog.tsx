@@ -48,7 +48,7 @@ import {
   PlayCircle,
 } from "lucide-react"
 import { format } from "date-fns"
-import type { Submission } from "@/lib/utils"
+export type Submission = any;
 import { saveSubmissionsToStorage, loadSubmissionsFromStorage } from "@/lib/utils"
 
 interface FileData {
@@ -142,9 +142,9 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
     if (!takedownReason.trim()) return
 
     const submissions = loadSubmissionsFromStorage()
-    const updatedSubmissions = submissions.map((sub) => {
+    const updatedSubmissions = submissions.map((sub: any) => {
       if (sub.id === submission.id) {
-        const updatedContentItems = sub.contentItems?.map((item) => {
+        const updatedContentItems = sub.contentItems?.map((item: any) => {
           if (item.id === selectedItemId) {
             return {
               ...item,
@@ -170,7 +170,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
 
   const handleDelete = () => {
     const submissions = loadSubmissionsFromStorage()
-    const updatedSubmissions = submissions.filter((sub) => sub.id !== submission.id)
+    const updatedSubmissions = submissions.filter((sub: any) => sub.id !== submission.id)
     saveSubmissionsToStorage(updatedSubmissions)
     onOpenChange(false)
     onUpdate?.()
@@ -180,13 +180,13 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
 
   // Get real-time data from submission
   const contentItems = submission.contentItems || []
-  const approvedItems = contentItems.filter((item) => item.status === "approved")
-  const rejectedItems = contentItems.filter((item) => item.status === "rejected")
-  const pendingItems = contentItems.filter((item) => !item.status || item.status === "pending")
-  const publishedItems = approvedItems.filter((item) => item.isTayang === true)
-  const takedownItems = approvedItems.filter((item) => item.isTakedown === true)
-  const unpublishedItems = approvedItems.filter((item) => item.isTayang !== true)
-  const confirmedItems = contentItems.filter((item) => item.isConfirmed === true)
+  const approvedItems = contentItems.filter((item: any) => item.status === "approved")
+  const rejectedItems = contentItems.filter((item: any) => item.status === "rejected")
+  const pendingItems = contentItems.filter((item: any) => !item.status || item.status === "pending")
+  const publishedItems = approvedItems.filter((item: any) => item.isTayang === true)
+  const takedownItems = approvedItems.filter((item: any) => item.isTakedown === true)
+  const unpublishedItems = approvedItems.filter((item: any) => item.isTayang !== true)
+  const confirmedItems = contentItems.filter((item: any) => item.isConfirmed === true)
 
   // Tab definitions
   const tabs = [
@@ -204,7 +204,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
       label: "Output",
       icon: Sparkles,
       count: approvedItems.filter(
-        (item) =>
+        (item: any) =>
           item.hasilProdukValidasiFile || item.hasilProdukValidasiLink || item.hasilProdukFile || item.hasilProdukLink,
       ).length,
     },
@@ -553,7 +553,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
         return
       }
 
-      const contentIndex = submissions[submissionIndex].contentItems?.findIndex((c) => c.id === contentId)
+      const contentIndex = submissions[submissionIndex].contentItems?.findIndex((c: any) => c.id === contentId)
 
       if (contentIndex === undefined || contentIndex === -1) {
         // onToast("Konten tidak ditemukan", "error")
@@ -575,7 +575,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
 
       // Update local state
       if (submission.contentItems) {
-        const updatedContentItems = submission.contentItems.map((item) =>
+        const updatedContentItems = submission.contentItems.map((item: any) =>
           item.id === contentId
             ? {
                 ...item,
@@ -678,10 +678,10 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
 
   // Calculate statistics
   const totalItems = submission.contentItems?.length || 0
-  const approvedItemsCalc = submission.contentItems?.filter((item) => item.status === "approved").length || 0
-  const rejectedItemsCalc = submission.contentItems?.filter((item) => item.status === "rejected").length || 0
-  const tayangItems = submission.contentItems?.filter((item) => item.isTayang).length || 0
-  const takedownItemsCalc = submission.contentItems?.filter((item) => item.isTakedown).length || 0
+  const approvedItemsCalc = submission.contentItems?.filter((item: any) => item.status === "approved").length || 0
+  const rejectedItemsCalc = submission.contentItems?.filter((item: any) => item.status === "rejected").length || 0
+  const tayangItems = submission.contentItems?.filter((item: any) => item.isTayang).length || 0
+  const takedownItemsCalc = submission.contentItems?.filter((item: any) => item.isTakedown).length || 0
 
   return (
     <>
@@ -851,7 +851,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
                   Detail Konten
                 </h3>
                 <div className="space-y-4">
-                  {submission.contentItems?.map((item, index) => (
+                  {submission.contentItems?.map((item: any, index: any) => (
                     <div
                       key={item.id}
                       className="border rounded-lg p-4 bg-gray-50"
@@ -1066,7 +1066,7 @@ export function RekapDetailDialog({ isOpen, onOpenChange, submission, onUpdate }
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900">File Dokumen</h3>
                 {submission.dokumenPendukung && submission.dokumenPendukung.length > 0 ? (
-                  submission.dokumenPendukung.map((file, index) => (
+                  submission.dokumenPendukung.map((file: any, index: any) => (
                     <Card key={index}>
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">

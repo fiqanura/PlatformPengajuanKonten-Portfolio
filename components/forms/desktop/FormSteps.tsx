@@ -1,9 +1,9 @@
 "use client"
-import { StepOne } from "./steps/StepOne"
-import { StepTwo } from "./steps/StepTwo"
-import { StepThree } from "./steps/StepThree"
-import { StepFour } from "./steps/StepFour"
-import type { FormData, FormContentItem } from "@/hooks/useFormHandler"
+import StepOne from "./steps/StepOne"
+import StepTwo from "./steps/StepTwo"
+import StepThree from "./steps/StepThree"
+import StepFour from "./steps/StepFour"
+import type { FormData, FormContentItem } from "@/app/form-types"
 
 interface FormStepsProps {
   currentStep: number
@@ -27,7 +27,7 @@ interface FormStepsProps {
     value: string,
     checked: boolean,
   ) => void
-  generateCredentials: () => { noComtab: string; password: string }
+  generateCredentials: () => { noComtab: string; pinSandi: string }
   submissions: any[]
   isEditMode: boolean
   isMobile: boolean
@@ -58,20 +58,12 @@ export const FormSteps = ({
       <div
         key={currentStep}
       >
-        {currentStep === 1 && <StepOne formData={formData} setFormData={setFormData} isMobile={isMobile} />}
+        {currentStep === 1 && <StepOne formData={formData} updateFormData={(updates) => setFormData((prev: any) => ({ ...prev, ...updates }))} isMobile={isMobile} />}
 
         {currentStep === 2 && (
           <StepTwo
-            selectedContentTypes={selectedContentTypes}
-            contentQuantities={contentQuantities}
-            onContentTypeChange={onContentTypeChange}
-            setContentQuantities={setContentQuantities}
             formData={formData}
-            setFormData={setFormData}
-            initialFormContentItemState={initialFormContentItemState}
-            isMobile={isMobile}
-            getContentTypeDisplayName={getContentTypeDisplayName}
-            handleQuantityChange={handleQuantityChange}
+            updateFormData={(updates) => setFormData((prev: any) => ({ ...prev, ...updates }))}
           />
         )}
 
@@ -79,20 +71,17 @@ export const FormSteps = ({
           <StepThree
             formData={formData}
             updateContentItem={updateContentItem}
-            handleSourceToggle={handleSourceToggle}
-            isMobile={isMobile}
-            getContentTypeDisplayName={getContentTypeDisplayName}
           />
         )}
 
         {currentStep === 4 && (
           <StepFour
             formData={formData}
-            setFormData={setFormData}
+            updateFormData={(updates) => setFormData((prev: any) => ({ ...prev, ...updates }))}
+            isFormCompleteForSubmission={() => true}
+            isStep4Valid={true}
             generateCredentials={generateCredentials}
-            submissions={submissions}
             isEditMode={isEditMode}
-            isMobile={isMobile}
           />
         )}
       </div>

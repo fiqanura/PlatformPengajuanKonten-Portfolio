@@ -35,6 +35,8 @@ const MobileFileInput = ({
         {label}
       </label>
       <EnhancedFileOrLinkInput
+        id={id}
+        label={label}
         value={value || ""}
         onChange={onChange}
         placeholder={`Upload ${label.toLowerCase()} atau masukkan link`}

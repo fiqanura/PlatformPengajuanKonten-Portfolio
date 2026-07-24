@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { apiClient, ApiError } from "@/lib/api-client"
+import apiClient, { ApiError } from "@/lib/api-client"
 
 interface UseApiOptions {
   immediate?: boolean
@@ -91,10 +91,4 @@ export function useUsers(params?: any) {
   return useApi(() => apiClient.getUsers(params))
 }
 
-export function useAnalytics(params?: any) {
-  return useApi(() => apiClient.getAnalytics(params))
-}
 
-export function useNotifications(params?: any) {
-  return useApi(() => apiClient.getNotifications(params))
-}

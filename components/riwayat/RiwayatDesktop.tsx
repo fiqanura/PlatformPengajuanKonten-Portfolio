@@ -355,9 +355,9 @@ export default function RiwayatDesktop({ onEdit }: RiwayatDesktopProps) {
         if (apiData.success && apiData.data) {
           // Transform API data to match our Submission interface
           const transformedSubmissions = Array.isArray(apiData.data) 
-            ? apiData.data.map((item: any) => transformSubmissionFromAPI(item))
-            : apiData.data.data 
-              ? apiData.data.data.map((item: any) => transformSubmissionFromAPI(item))
+            ? apiData.data.map((item: any) => item.noComtab ? item : transformSubmissionFromAPI(item))
+            : (apiData as any).data.data 
+              ? (apiData as any).data.data.map((item: any) => item.noComtab ? item : transformSubmissionFromAPI(item))
               : []
           
           setSubmissions(transformedSubmissions)
@@ -691,9 +691,9 @@ export default function RiwayatDesktop({ onEdit }: RiwayatDesktopProps) {
       if (apiData.success && apiData.data) {
         // Transform API data to match our Submission interface
         const transformedSubmissions = Array.isArray(apiData.data) 
-          ? apiData.data.map((item: any) => transformSubmissionFromAPI(item))
-          : apiData.data.data 
-            ? apiData.data.data.map((item: any) => transformSubmissionFromAPI(item))
+          ? apiData.data.map((item: any) => item.noComtab ? item : transformSubmissionFromAPI(item))
+          : (apiData as any).data.data 
+            ? (apiData as any).data.data.map((item: any) => item.noComtab ? item : transformSubmissionFromAPI(item))
             : []
         
         setSubmissions(transformedSubmissions)

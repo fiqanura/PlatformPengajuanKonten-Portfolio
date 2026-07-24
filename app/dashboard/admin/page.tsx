@@ -91,7 +91,7 @@ export default function AdminDashboardPage() {
           if (apiData.success && apiData.data) {
             console.log("✅ API Response received:", apiData)
             
-            let submissions = Array.isArray(apiData.data) ? apiData.data : (apiData.data.data || [])
+            let submissions = Array.isArray(apiData.data) ? apiData.data : ((apiData.data as any)?.data || [])
             console.log("📊 Processing stats for submissions:", submissions.length)
             
             // Calculate stats based on API or Mock response structure
@@ -156,7 +156,7 @@ export default function AdminDashboardPage() {
       const apiData = await getSubmissions()
       
       if (apiData.success && apiData.data) {
-        let submissions = Array.isArray(apiData.data) ? apiData.data : (apiData.data.data || [])
+        let submissions = Array.isArray(apiData.data) ? apiData.data : ((apiData.data as any)?.data || [])
         console.log("🔄 Refreshed stats for submissions:", submissions.length)
         
         const totalSubmissions = submissions.length

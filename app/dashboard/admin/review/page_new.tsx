@@ -640,23 +640,25 @@ export default function ReviewPage() {
         <>
           {isMobile ? (
             <MobileContentReviewDialog
-              submission={selectedSubmission}
+              submission={selectedSubmission as any}
               isOpen={isDialogOpen}
-              onClose={() => {
-                setIsDialogOpen(false)
-                setSelectedSubmission(null)
+              onOpenChange={(open) => {
+                setIsDialogOpen(open)
+                if (!open) setSelectedSubmission(null)
               }}
-              onContentUpdate={handleContentUpdate}
+              onUpdate={(submissions: any) => setSubmissions(submissions)}
+              onToast={(message: string, type: "success" | "error" | "info") => toast({ title: type === "success" ? "Berhasil" : "Info", description: message, variant: type === "error" ? "destructive" : "default" })}
             />
           ) : (
             <ContentReviewDialog
-              submission={selectedSubmission}
+              submission={selectedSubmission as any}
               isOpen={isDialogOpen}
-              onClose={() => {
-                setIsDialogOpen(false)
-                setSelectedSubmission(null)
+              onOpenChange={(open) => {
+                setIsDialogOpen(open)
+                if (!open) setSelectedSubmission(null)
               }}
-              onContentUpdate={handleContentUpdate}
+              onUpdate={(submissions: any) => setSubmissions(submissions)}
+              onToast={(message: string, type: "success" | "error" | "info") => toast({ title: type === "success" ? "Berhasil" : "Info", description: message, variant: type === "error" ? "destructive" : "default" })}
             />
           )}
         </>

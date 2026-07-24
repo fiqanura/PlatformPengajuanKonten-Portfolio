@@ -30,7 +30,7 @@ import {
 } from "lucide-react"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-import type { FormData, FormContentItem } from "@/hooks/useFormHandler"
+import type { FormData, FormContentItem } from "@/app/form-types"
 
 interface MobileStepThreeProps {
   formData: FormData
@@ -456,8 +456,6 @@ export const MobileStepThree = ({
                                     value={item.narasiFile || ""}
                                     onChange={(file) => updateContentItem(index, { narasiFile: file })}
                                     accept=".txt,.doc,.docx,.pdf"
-                                    fileId={item.narasiFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { narasiFileId: id })}
                                   />
                                 </div>
                               )}
@@ -470,8 +468,6 @@ export const MobileStepThree = ({
                                     value={item.suratFile || ""}
                                     onChange={(file) => updateContentItem(index, { suratFile: file })}
                                     accept=".pdf,.jpg,.jpeg,.png"
-                                    fileId={item.suratFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { suratFileId: id })}
                                   />
                                 </div>
                               )}
@@ -526,8 +522,6 @@ export const MobileStepThree = ({
                                     value={item.audioDubbingFile || ""}
                                     onChange={(file) => updateContentItem(index, { audioDubbingFile: file })}
                                     accept=".mp3,.wav,.ogg,.m4a"
-                                    fileId={item.audioDubbingFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { audioDubbingFileId: id })}
                                   />
                                 </div>
                               )}
@@ -539,9 +533,8 @@ export const MobileStepThree = ({
                                     label="File Lain-lain (Audio Dubbing)"
                                     value={item.audioDubbingLainLainFile || ""}
                                     onChange={(file) => updateContentItem(index, { audioDubbingLainLainFile: file })}
-                                    fileId={item.audioDubbingLainLainFileId}
                                     onFileIdChange={(id) =>
-                                      updateContentItem(index, { audioDubbingLainLainFileId: id })
+                                      updateContentItem(index, { audioDubbingLainLainFile: id })
                                     }
                                   />
                                 </div>
@@ -597,8 +590,6 @@ export const MobileStepThree = ({
                                     value={item.audioBacksoundFile || ""}
                                     onChange={(file) => updateContentItem(index, { audioBacksoundFile: file })}
                                     accept=".mp3,.wav,.ogg,.m4a"
-                                    fileId={item.audioBacksoundFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { audioBacksoundFileId: id })}
                                   />
                                 </div>
                               )}
@@ -610,9 +601,8 @@ export const MobileStepThree = ({
                                     label="File Lain-lain (Audio Backsound)"
                                     value={item.audioBacksoundLainLainFile || ""}
                                     onChange={(file) => updateContentItem(index, { audioBacksoundLainLainFile: file })}
-                                    fileId={item.audioBacksoundLainLainFileId}
                                     onFileIdChange={(id) =>
-                                      updateContentItem(index, { audioBacksoundLainLainFileId: id })
+                                      updateContentItem(index, { audioBacksoundLainLainFile: id })
                                     }
                                   />
                                 </div>
@@ -671,8 +661,6 @@ export const MobileStepThree = ({
                                     value={item.pendukungVideoFile || ""}
                                     onChange={(file) => updateContentItem(index, { pendukungVideoFile: file })}
                                     accept=".mp4,.avi,.mov,.wmv,.flv"
-                                    fileId={item.pendukungVideoFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { pendukungVideoFileId: id })}
                                   />
                                 </div>
                               )}
@@ -685,8 +673,6 @@ export const MobileStepThree = ({
                                     value={item.pendukungFotoFile || ""}
                                     onChange={(file) => updateContentItem(index, { pendukungFotoFile: file })}
                                     accept=".jpg,.jpeg,.png,.gif,.webp"
-                                    fileId={item.pendukungFotoFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { pendukungFotoFileId: id })}
                                   />
                                 </div>
                               )}
@@ -698,8 +684,6 @@ export const MobileStepThree = ({
                                     label="File Lain-lain (Pendukung)"
                                     value={item.pendukungLainLainFile || ""}
                                     onChange={(file) => updateContentItem(index, { pendukungLainLainFile: file })}
-                                    fileId={item.pendukungLainLainFileId}
-                                    onFileIdChange={(id) => updateContentItem(index, { pendukungLainLainFileId: id })}
                                   />
                                 </div>
                               )}

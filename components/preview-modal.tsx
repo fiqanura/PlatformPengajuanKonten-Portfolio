@@ -7,14 +7,14 @@ import { Download, FileText, ImageIcon, Video, Music, File, X, Eye, AlertTriangl
 interface PreviewModalProps {
   isOpen: boolean
   onOpenChange: (open: boolean) => void
-  file: any
+  file?: any
   url: string
   type: string
   fileName: string
-  title: string
+  title?: string
 }
 
-export function PreviewModal({ isOpen, onOpenChange, file, url, type, fileName, title }: PreviewModalProps) {
+export function PreviewModal({ isOpen, onOpenChange, file, url, type, fileName, title = "Preview" }: PreviewModalProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string>("")

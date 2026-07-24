@@ -654,7 +654,7 @@ export default function ReviewPage() {
                 if (!open) setSelectedSubmission(null)
               }}
               onUpdate={(updatedSubmissions) => {
-                setSubmissions(updatedSubmissions)
+                setSubmissions(updatedSubmissions as any)
               }}
               onToast={(message, type) => {
                 toast({
@@ -673,7 +673,7 @@ export default function ReviewPage() {
                 if (!open) setSelectedSubmission(null)
               }}
               onUpdate={(updatedSubmissions) => {
-                setSubmissions(updatedSubmissions)
+                setSubmissions(updatedSubmissions as any)
               }}
               onToast={(message, type) => {
                 toast({
